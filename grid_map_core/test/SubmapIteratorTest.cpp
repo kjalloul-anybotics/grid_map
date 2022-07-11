@@ -12,9 +12,6 @@
 // gtest
 #include <gtest/gtest.h>
 
-// Limits
-#include <cfloat>
-
 // Vector
 #include <vector>
 
@@ -32,7 +29,7 @@ TEST(SubmapIterator, Simple)
   Eigen::Array2i submapIndex;
 
   std::vector<std::string> types;
-  types.push_back("type");
+  types.emplace_back("type");
   grid_map::GridMap map(types);
   map.setGeometry(Eigen::Array2d(8.1, 5.1), 1.0, Eigen::Vector2d(0.0, 0.0));  // bufferSize(8, 5)
 
@@ -95,7 +92,7 @@ TEST(SubmapIterator, CircularBuffer)
   Eigen::Array2i submapIndex;
 
   std::vector<std::string> types;
-  types.push_back("type");
+  types.emplace_back("type");
   grid_map::GridMap map(types);
   // bufferSize(8, 5)
   map.setGeometry(grid_map::Length(8.1, 5.1), 1.0, grid_map::Position(0.0, 0.0));

@@ -35,18 +35,6 @@ PolygonIterator::PolygonIterator(
   if (!isInside()) {++(*this);}
 }
 
-PolygonIterator & PolygonIterator::operator=(const PolygonIterator & other)
-{
-  polygon_ = other.polygon_;
-  internalIterator_ = other.internalIterator_;
-  mapLength_ = other.mapLength_;
-  mapPosition_ = other.mapPosition_;
-  resolution_ = other.resolution_;
-  bufferSize_ = other.bufferSize_;
-  bufferStartIndex_ = other.bufferStartIndex_;
-  return *this;
-}
-
 bool PolygonIterator::operator!=(const PolygonIterator & other) const
 {
   return internalIterator_ != other.internalIterator_;
@@ -102,7 +90,7 @@ void PolygonIterator::findSubmapParameters(
   getIndexFromPosition(
     endIndex, bottomRight, mapLength_, mapPosition_, resolution_, bufferSize_,
     bufferStartIndex_);
-  bufferSize = getSubmapSizeFromCornerIndeces(startIndex, endIndex, bufferSize_, bufferStartIndex_);
+  bufferSize = getSubmapSizeFromCornerIndices(startIndex, endIndex, bufferSize_, bufferStartIndex_);
 }
 
 }  // namespace grid_map

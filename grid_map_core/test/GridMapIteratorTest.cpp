@@ -12,9 +12,6 @@
 // gtest
 #include <gtest/gtest.h>
 
-// Limits
-#include <cfloat>
-
 // Vector
 #include <vector>
 
@@ -52,7 +49,7 @@ TEST(GridMapIterator, LinearIndex)
   auto & data = map["layer"];
   unsigned int i = 0;
   for (; !iterator.isPastEnd(); ++iterator, ++i) {
-    data(iterator.getLinearIndex()) = 1.0;
+    data(static_cast<long>(iterator.getLinearIndex())) = 1.0;
     EXPECT_EQ(i, iterator.getLinearIndex());
     EXPECT_FALSE(iterator.isPastEnd());
   }

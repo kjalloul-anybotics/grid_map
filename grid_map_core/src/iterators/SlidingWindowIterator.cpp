@@ -58,7 +58,7 @@ SlidingWindowIterator & SlidingWindowIterator::operator++()
 const Matrix SlidingWindowIterator::getData() const
 {
   const Index centerIndex(*(*this));
-  const Index windowMargin(Index::Constant(windowMargin_));
+  const Index windowMargin(Index::Constant(static_cast<int>(windowMargin_)));
   const Index originalTopLeftIndex(centerIndex - windowMargin);
   Index topLeftIndex(originalTopLeftIndex);
   boundIndexToRange(topLeftIndex, size_);
@@ -116,7 +116,7 @@ void SlidingWindowIterator::setup(const GridMap & gridMap)
 bool SlidingWindowIterator::dataInsideMap() const
 {
   const Index centerIndex(*(*this));
-  const Index windowMargin(Index::Constant(windowMargin_));
+  const Index windowMargin(Index::Constant(static_cast<int>(windowMargin_)));
   const Index topLeftIndex(centerIndex - windowMargin);
   const Index bottomRightIndex(centerIndex + windowMargin);
   return checkIfIndexInRange(topLeftIndex, size_) && checkIfIndexInRange(bottomRightIndex, size_);

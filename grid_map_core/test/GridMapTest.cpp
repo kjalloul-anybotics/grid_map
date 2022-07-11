@@ -10,7 +10,7 @@
 #include <gtest/gtest.h>
 
 // Math
-#include <math.h>
+#include <cmath>
 
 #include <vector>
 #include <string>
@@ -68,12 +68,21 @@ TEST(GridMap, Move)
 
   EXPECT_EQ(3, startIndex(0));
   EXPECT_EQ(2, startIndex(1));
-
-  EXPECT_FALSE(map.isValid(grid_map::Index(0, 0)));  // TODO(needs_assignment): Check entire map.
-  EXPECT_TRUE(map.isValid(grid_map::Index(3, 2)));
-  EXPECT_FALSE(map.isValid(grid_map::Index(2, 2)));
-  EXPECT_FALSE(map.isValid(grid_map::Index(3, 1)));
-  EXPECT_TRUE(map.isValid(grid_map::Index(7, 4)));
+  
+  Eigen::Matrix<bool, 8, 5> isValidExpected;
+  isValidExpected << false, false, false, false, false, // clang-format off
+                     false, false, false, false, false,
+                     false, false, false, false, false,
+                     false, false, true,  true,  true,
+                     false, false, true,  true,  true,
+                     false, false, true,  true,  true,
+                     false, false, true,  true,  true,
+                     false, false, true,  true,  true; // clang-format on
+  for(int row{0}; row < 8; row++){
+    for(int col{0}; col < 5; col++){
+      EXPECT_EQ(map.isValid(Index(row, col)), isValidExpected(row, col)) << "Value of map.isValid at ["<<row << ", " << col <<"] is unexpected!";
+    }
+  }
 
   EXPECT_EQ(2u, regions.size());
   EXPECT_EQ(0, regions[0].getStartIndex()[0]);
@@ -147,7 +156,7 @@ TEST(GridMap, ClipToMap)
   EXPECT_NEAR(clippedPositionInMap.x(), positionInMap.x(), 1e-6);
   EXPECT_NEAR(clippedPositionInMap.y(), positionInMap.y(), 1e-6);
 
-  // Check if position-out-map is indeed outside of the map.
+  // Check if position-out-map is indeed outside the map.
   EXPECT_TRUE(!map.isInside(positionOutMap));
 
   // Check if position-out-map has been projected into the map.
@@ -198,7 +207,7 @@ TEST(AddDataFrom, ExtendMapNotAligned)
   map2.setBasicLayers(map1.getLayers());
 
   std::vector<std::string> stringVector;
-  stringVector.push_back("nan");
+  stringVector.emplace_back("nan");
   map1.addDataFrom(map2, true, false, false, stringVector);
   grid_map::Index index;
   map1.getIndex(grid_map::Position(-2, -2), index);

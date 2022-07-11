@@ -32,13 +32,6 @@ public:
   PolygonIterator(const grid_map::GridMap & gridMap, const grid_map::Polygon & polygon);
 
   /*!
-   * Assignment operator.
-   * @param iterator the iterator to copy data from.
-   * @return a reference to *this.
-   */
-  PolygonIterator & operator=(const PolygonIterator & other);
-
-  /*!
    * Compare to another iterator.
    * @return whether the current iterator points to a different address than the other one.
    */

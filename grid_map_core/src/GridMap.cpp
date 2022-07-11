@@ -8,7 +8,7 @@
 
 #include <Eigen/Dense>
 
-#include <math.h>
+#include <cmath>
 #include <algorithm>
 #include <cassert>
 #include <iostream>
@@ -322,7 +322,7 @@ bool GridMap::getVector(
 
 GridMap GridMap::getSubmap(const Position & position, const Length & length, bool & isSuccess) const
 {
-  // Submap the generate.
+  // Submap to generate.
   GridMap submap(layers_);
   submap.setBasicLayers(basicLayers_);
   submap.setTimestamp(timestamp_);

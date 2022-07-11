@@ -9,8 +9,6 @@
 // gtest
 #include <gtest/gtest.h>
 
-// Limits
-#include <cfloat>
 
 #include "grid_map_core/iterators/LineIterator.hpp"
 #include "grid_map_core/GridMap.hpp"

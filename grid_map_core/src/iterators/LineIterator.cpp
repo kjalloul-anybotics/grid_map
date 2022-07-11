@@ -35,26 +35,6 @@ LineIterator::LineIterator(
   initialize(gridMap, start, end);
 }
 
-LineIterator & LineIterator::operator=(const LineIterator & other)
-{
-  index_ = other.index_;
-  start_ = other.start_;
-  end_ = other.end_;
-  iCell_ = other.iCell_;
-  nCells_ = other.nCells_;
-  increment1_ = other.increment1_;
-  increment2_ = other.increment2_;
-  denominator_ = other.denominator_;
-  numerator_ = other.numerator_;
-  numeratorAdd_ = other.numeratorAdd_;
-  mapLength_ = other.mapLength_;
-  mapPosition_ = other.mapPosition_;
-  resolution_ = other.resolution_;
-  bufferSize_ = other.bufferSize_;
-  bufferStartIndex_ = other.bufferStartIndex_;
-  return *this;
-}
-
 bool LineIterator::operator!=(const LineIterator & other) const
 {
   return (index_ != other.index_).any();

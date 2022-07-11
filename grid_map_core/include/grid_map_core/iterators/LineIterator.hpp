@@ -42,13 +42,6 @@ public:
   LineIterator(const grid_map::GridMap & gridMap, const Index & start, const Index & end);
 
   /*!
-   * Assignment operator.
-   * @param iterator the iterator to copy data from.
-   * @return a reference to *this.
-   */
-  LineIterator & operator=(const LineIterator & other);
-
-  /*!
    * Compare to another iterator.
    * @return whether the current iterator points to a different address than the other one.
    */

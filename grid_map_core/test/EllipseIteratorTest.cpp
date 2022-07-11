@@ -12,9 +12,6 @@
 // gtest
 #include <gtest/gtest.h>
 
-// Limits
-#include <cfloat>
-
 // Vector
 #include <vector>
 

@@ -36,13 +36,6 @@ public:
     const double radius);
 
   /*!
-   * Assignment operator.
-   * @param iterator the iterator to copy data from.
-   * @return a reference to *this.
-   */
-  SpiralIterator & operator=(const SpiralIterator & other);
-
-  /*!
    * Compare to another iterator.
    * @return whether the current iterator points to a different address than the other one.
    */
@@ -87,7 +80,7 @@ private:
 
   int signum(const int val)
   {
-    return (0 < val) - (val < 0);
+    return static_cast<int>(0 < val) - static_cast<int>(val < 0);
   }
 
   //! Position of the circle center;

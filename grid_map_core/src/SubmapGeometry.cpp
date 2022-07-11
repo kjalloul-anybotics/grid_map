@@ -24,10 +24,6 @@ SubmapGeometry::SubmapGeometry(
     gridMap_.getSize(), gridMap_.getStartIndex());
 }
 
-SubmapGeometry::~SubmapGeometry()
-{
-}
-
 const GridMap & SubmapGeometry::getGridMap() const
 {
   return gridMap_;

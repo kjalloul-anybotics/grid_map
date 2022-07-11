@@ -41,11 +41,6 @@ public:
   explicit Polygon(std::vector<Position> vertices);
 
   /*!
-   * Destructor.
-   */
-  virtual ~Polygon() = default;
-
-  /*!
    * Check if point is inside polygon.
    * @param point the point to be checked.
    * @return true if inside, false otherwise.
@@ -163,7 +158,7 @@ public:
   bool offsetInward(const double margin);
 
   /*!
-   * If only two verices are given, this methods generates a
+   * If only two vertices are given, this methods generates a
    * `thickened` line polygon with four vertices.
    * @param thickness the desired thickness of the line.
    * @return true if successful, false otherwise.

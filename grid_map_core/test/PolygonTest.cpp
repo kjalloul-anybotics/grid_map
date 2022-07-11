@@ -11,7 +11,6 @@
 
 // Eigen
 #include <Eigen/Core>
-#include <Eigen/Dense>
 
 #include <vector>
 
@@ -71,27 +70,27 @@ TEST(Polygon, convexHullPoints)
   // Test that points which already create a convex shape (square)
   // can be used to create a convex polygon.
   std::vector<grid_map::Position> points1;
-  points1.push_back(Eigen::Vector2d(0.0, 0.0));
-  points1.push_back(Eigen::Vector2d(1.0, 0.0));
-  points1.push_back(Eigen::Vector2d(1.0, 1.0));
-  points1.push_back(Eigen::Vector2d(0.0, 1.0));
+  points1.emplace_back(0.0, 0.0);
+  points1.emplace_back(1.0, 0.0);
+  points1.emplace_back(1.0, 1.0);
+  points1.emplace_back(0.0, 1.0);
   grid_map::Polygon polygon1 = grid_map::Polygon::monotoneChainConvexHullOfPoints(points1);
-  EXPECT_EQ(4u, polygon1.nVertices());
+  EXPECT_EQ(4, polygon1.nVertices());
   EXPECT_TRUE(polygon1.isInside(Eigen::Vector2d(0.5, 0.5)));
   EXPECT_FALSE(polygon1.isInside(Eigen::Vector2d(-0.01, 0.5)));
 
   // Test that a random set of points can be used to create a convex polygon.
   std::vector<grid_map::Position> points2;
-  points2.push_back(Eigen::Vector2d(0.0, 0.0));
-  points2.push_back(Eigen::Vector2d(1.0, 0.0));
-  points2.push_back(Eigen::Vector2d(2.0, 1.0));
-  points2.push_back(Eigen::Vector2d(1.0, 2.0));
-  points2.push_back(Eigen::Vector2d(-1.0, 2.0));
-  points2.push_back(Eigen::Vector2d(-1.0, -2.0));
-  points2.push_back(Eigen::Vector2d(0.0, 1.0));
-  points2.push_back(Eigen::Vector2d(1.0, 1.0));
+  points2.emplace_back(0.0, 0.0);
+  points2.emplace_back(1.0, 0.0);
+  points2.emplace_back(2.0, 1.0);
+  points2.emplace_back(1.0, 2.0);
+  points2.emplace_back(-1.0, 2.0);
+  points2.emplace_back(-1.0, -2.0);
+  points2.emplace_back(0.0, 1.0);
+  points2.emplace_back(1.0, 1.0);
   grid_map::Polygon polygon2 = grid_map::Polygon::monotoneChainConvexHullOfPoints(points2);
-  EXPECT_EQ(4u, polygon2.nVertices());
+  EXPECT_EQ(4, polygon2.nVertices());
   EXPECT_TRUE(polygon2.isInside(Eigen::Vector2d(0.5, 0.5)));
   EXPECT_TRUE(polygon2.isInside(Eigen::Vector2d(0.0, 1.0)));
   EXPECT_TRUE(polygon2.isInside(Eigen::Vector2d(-0.5, -0.5)));

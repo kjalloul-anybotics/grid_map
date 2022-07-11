@@ -10,7 +10,6 @@
 
 #include "grid_map_core/CubicInterpolation.hpp"
 #include "grid_map_core/GridMap.hpp"
-#include "grid_map_core/GridMapMath.hpp"
 
 namespace grid_map
 {
@@ -37,7 +36,7 @@ double getLayerValue(const Matrix & layerMat, int rowReq, int colReq)
 
 
 /**
- * BICUBIC CONVLUTION INTERPOLATION ALGORITHM
+ * BICUBIC CONVOLUTION INTERPOLATION ALGORITHM
  * also known as piecewise bicubic interpolation,
  * it does not ensure continuity of the first derivatives.
  * see:
@@ -202,7 +201,7 @@ bool evaluateBicubicInterpolation(
   FunctionValueMatrix functionValues;
   assembleFunctionValueMatrix(f, dfx, dfy, ddfxy, &functionValues);
 
-  // get normalized coordiantes
+  // get normalized coordinates
   Position normalizedCoordinates;
   if (!computeNormalizedCoordinates(
       gridMap, unitSquareCornerIndices.bottomLeft_, queriedPosition,
@@ -390,7 +389,7 @@ double mixedSecondOrderDerivativeAt(
   double resolution)
 {
   /*
-   * no need for dimensions since the we have to differentiate w.r.t. x and y
+   * no need for dimensions since we have to differentiate w.r.t. x and y
    * the order doesn't matter. Derivative values are the same.
    * Taken from https://www.mathematik.uni-dortmund.de/~kuzmin/cfdintro/lecture4.pdf
    */

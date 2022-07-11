@@ -63,7 +63,7 @@ public:
    * Increase the iterator to the next element.
    * @return a reference to the updated iterator.
    */
-  SlidingWindowIterator & operator++();
+  SlidingWindowIterator & operator++() override;
 
   /*!
    * Return the data of the sliding window.

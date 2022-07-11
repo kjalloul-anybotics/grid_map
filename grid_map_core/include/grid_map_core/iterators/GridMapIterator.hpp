@@ -34,19 +34,6 @@ public:
   explicit GridMapIterator(const GridMapIterator * other);
 
   /*!
-   * Copy constructor.
-   * @param other the object to copy.
-   */
-  GridMapIterator(const GridMapIterator & other) = default;
-
-  /*!
-   * Assignment operator.
-   * @param iterator the iterator to copy data from.
-   * @return a reference to *this.
-   */
-  GridMapIterator & operator=(const GridMapIterator & other);
-
-  /*!
    * Compare to another iterator.
    * @return whether the current iterator points to a different address than the other one.
    */

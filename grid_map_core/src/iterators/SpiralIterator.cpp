@@ -37,22 +37,6 @@ SpiralIterator::SpiralIterator(
   }
 }
 
-SpiralIterator & SpiralIterator::operator=(const SpiralIterator & other)
-{
-  center_ = other.center_;
-  indexCenter_ = other.indexCenter_;
-  radius_ = other.radius_;
-  radiusSquare_ = other.radiusSquare_;
-  nRings_ = other.nRings_;
-  distance_ = other.distance_;
-  pointsRing_ = other.pointsRing_;
-  mapLength_ = other.mapLength_;
-  mapPosition_ = other.mapPosition_;
-  resolution_ = other.resolution_;
-  bufferSize_ = other.bufferSize_;
-  return *this;
-}
-
 bool SpiralIterator::operator!=(const SpiralIterator & /*other*/) const
 {
   return (pointsRing_.back() != pointsRing_.back()).any();

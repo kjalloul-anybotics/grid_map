@@ -30,16 +30,6 @@ GridMapIterator::GridMapIterator(const GridMapIterator * other)
   isPastEnd_ = other->isPastEnd_;
 }
 
-GridMapIterator & GridMapIterator::operator=(const GridMapIterator & other)
-{
-  size_ = other.size_;
-  startIndex_ = other.startIndex_;
-  linearSize_ = other.linearSize_;
-  linearIndex_ = other.linearIndex_;
-  isPastEnd_ = other.isPastEnd_;
-  return *this;
-}
-
 bool GridMapIterator::operator!=(const GridMapIterator & other) const
 {
   return linearIndex_ != other.linearIndex_;
