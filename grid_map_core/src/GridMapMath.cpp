@@ -342,7 +342,7 @@ bool getSubmapInformation(
     submapPosition, resolution, submapBufferSize);
 }
 
-Size getSubmapSizeFromCornerIndeces(
+Size getSubmapSizeFromCornerIndices(
   const Index & topLeftIndex, const Index & bottomRightIndex,
   const Size & bufferSize, const Index & bufferStartIndex)
 {
@@ -378,80 +378,96 @@ bool getBufferRegionsForSubmap(
 
   if (quadrantOfTopLeft == BufferRegion::Quadrant::TopLeft) {
     if (quadrantOfBottomRight == BufferRegion::Quadrant::TopLeft) {
-      submapBufferRegions.emplace_back(submapIndex, submapBufferSize, BufferRegion::Quadrant::TopLeft);
+      submapBufferRegions.emplace_back(submapIndex,
+        submapBufferSize, BufferRegion::Quadrant::TopLeft);
       return true;
     }
 
     if (quadrantOfBottomRight == BufferRegion::Quadrant::TopRight) {
       Size topLeftSize(submapBufferSize(0), bufferSize(1) - submapIndex(1));
-      submapBufferRegions.emplace_back(submapIndex, topLeftSize, BufferRegion::Quadrant::TopLeft);
+      submapBufferRegions.emplace_back(submapIndex,
+        topLeftSize, BufferRegion::Quadrant::TopLeft);
 
       Index topRightIndex(submapIndex(0), 0);
       Size topRightSize(submapBufferSize(0), submapBufferSize(1) - topLeftSize(1));
-      submapBufferRegions.emplace_back(topRightIndex, topRightSize, BufferRegion::Quadrant::TopRight);
+      submapBufferRegions.emplace_back(topRightIndex,
+        topRightSize, BufferRegion::Quadrant::TopRight);
       return true;
     }
 
     if (quadrantOfBottomRight == BufferRegion::Quadrant::BottomLeft) {
       Size topLeftSize(bufferSize(0) - submapIndex(0), submapBufferSize(1));
-      submapBufferRegions.emplace_back(submapIndex, topLeftSize, BufferRegion::Quadrant::TopLeft);
+      submapBufferRegions.emplace_back(submapIndex,
+        topLeftSize, BufferRegion::Quadrant::TopLeft);
 
       Index bottomLeftIndex(0, submapIndex(1));
       Size bottomLeftSize(submapBufferSize(0) - topLeftSize(0), submapBufferSize(1));
-      submapBufferRegions.emplace_back(bottomLeftIndex, bottomLeftSize, BufferRegion::Quadrant::BottomLeft);
+      submapBufferRegions.emplace_back(bottomLeftIndex,
+        bottomLeftSize, BufferRegion::Quadrant::BottomLeft);
       return true;
     }
 
     if (quadrantOfBottomRight == BufferRegion::Quadrant::BottomRight) {
       Size topLeftSize(bufferSize(0) - submapIndex(0), bufferSize(1) - submapIndex(1));
-      submapBufferRegions.emplace_back(submapIndex, topLeftSize, BufferRegion::Quadrant::TopLeft);
+      submapBufferRegions.emplace_back(submapIndex,
+        topLeftSize, BufferRegion::Quadrant::TopLeft);
 
       Index topRightIndex(submapIndex(0), 0);
       Size topRightSize(bufferSize(0) - submapIndex(0), submapBufferSize(1) - topLeftSize(1));
-      submapBufferRegions.emplace_back(topRightIndex, topRightSize, BufferRegion::Quadrant::TopRight);
+      submapBufferRegions.emplace_back(topRightIndex,
+        topRightSize, BufferRegion::Quadrant::TopRight);
 
       Index bottomLeftIndex(0, submapIndex(1));
       Size bottomLeftSize(submapBufferSize(0) - topLeftSize(0), bufferSize(1) - submapIndex(1));
-      submapBufferRegions.emplace_back(bottomLeftIndex, bottomLeftSize, BufferRegion::Quadrant::BottomLeft);
+      submapBufferRegions.emplace_back(bottomLeftIndex,
+        bottomLeftSize, BufferRegion::Quadrant::BottomLeft);
 
       Index bottomRightIndex = Index::Zero();
       Size bottomRightSize(bottomLeftSize(0), topRightSize(1));
-      submapBufferRegions.emplace_back(bottomRightIndex, bottomRightSize, BufferRegion::Quadrant::BottomRight);
+      submapBufferRegions.emplace_back(bottomRightIndex,
+        bottomRightSize, BufferRegion::Quadrant::BottomRight);
       return true;
     }
   } else if (quadrantOfTopLeft == BufferRegion::Quadrant::TopRight) {
     if (quadrantOfBottomRight == BufferRegion::Quadrant::TopRight) {
-      submapBufferRegions.emplace_back(submapIndex, submapBufferSize, BufferRegion::Quadrant::TopRight);
+      submapBufferRegions.emplace_back(submapIndex,
+        submapBufferSize, BufferRegion::Quadrant::TopRight);
       return true;
     }
 
     if (quadrantOfBottomRight == BufferRegion::Quadrant::BottomRight) {
       Size topRightSize(bufferSize(0) - submapIndex(0), submapBufferSize(1));
-      submapBufferRegions.emplace_back(submapIndex, topRightSize, BufferRegion::Quadrant::TopRight);
+      submapBufferRegions.emplace_back(submapIndex,
+        topRightSize, BufferRegion::Quadrant::TopRight);
 
       Index bottomRightIndex(0, submapIndex(1));
       Size bottomRightSize(submapBufferSize(0) - topRightSize(0), submapBufferSize(1));
-      submapBufferRegions.emplace_back(bottomRightIndex, bottomRightSize, BufferRegion::Quadrant::BottomRight);
+      submapBufferRegions.emplace_back(bottomRightIndex,
+        bottomRightSize, BufferRegion::Quadrant::BottomRight);
       return true;
     }
   } else if (quadrantOfTopLeft == BufferRegion::Quadrant::BottomLeft) {
     if (quadrantOfBottomRight == BufferRegion::Quadrant::BottomLeft) {
-      submapBufferRegions.emplace_back(submapIndex, submapBufferSize, BufferRegion::Quadrant::BottomLeft);
+      submapBufferRegions.emplace_back(submapIndex,
+        submapBufferSize, BufferRegion::Quadrant::BottomLeft);
       return true;
     }
 
     if (quadrantOfBottomRight == BufferRegion::Quadrant::BottomRight) {
       Size bottomLeftSize(submapBufferSize(0), bufferSize(1) - submapIndex(1));
-      submapBufferRegions.emplace_back(submapIndex, bottomLeftSize, BufferRegion::Quadrant::BottomLeft);
+      submapBufferRegions.emplace_back(submapIndex,
+        bottomLeftSize, BufferRegion::Quadrant::BottomLeft);
 
       Index bottomRightIndex(submapIndex(0), 0);
       Size bottomRightSize(submapBufferSize(0), submapBufferSize(1) - bottomLeftSize(1));
-      submapBufferRegions.emplace_back(bottomRightIndex, bottomRightSize, BufferRegion::Quadrant::BottomRight);
+      submapBufferRegions.emplace_back(bottomRightIndex,
+        bottomRightSize, BufferRegion::Quadrant::BottomRight);
       return true;
     }
   } else if (quadrantOfTopLeft == BufferRegion::Quadrant::BottomRight) {
     if (quadrantOfBottomRight == BufferRegion::Quadrant::BottomRight) {
-      submapBufferRegions.emplace_back(submapIndex, submapBufferSize, BufferRegion::Quadrant::BottomRight);
+      submapBufferRegions.emplace_back(submapIndex,
+        submapBufferSize, BufferRegion::Quadrant::BottomRight);
       return true;
     }
   }

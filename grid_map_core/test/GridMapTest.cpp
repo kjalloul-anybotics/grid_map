@@ -68,19 +68,21 @@ TEST(GridMap, Move)
 
   EXPECT_EQ(3, startIndex(0));
   EXPECT_EQ(2, startIndex(1));
-  
+
   Eigen::Matrix<bool, 8, 5> isValidExpected;
-  isValidExpected << false, false, false, false, false, // clang-format off
+  isValidExpected << false, false, false, false, false,  // clang-format off
                      false, false, false, false, false,
                      false, false, false, false, false,
-                     false, false, true,  true,  true,
-                     false, false, true,  true,  true,
-                     false, false, true,  true,  true,
-                     false, false, true,  true,  true,
-                     false, false, true,  true,  true; // clang-format on
-  for(int row{0}; row < 8; row++){
-    for(int col{0}; col < 5; col++){
-      EXPECT_EQ(map.isValid(Index(row, col)), isValidExpected(row, col)) << "Value of map.isValid at ["<<row << ", " << col <<"] is unexpected!";
+                     false, false, true, true, true,
+                     false, false, true, true, true,
+                     false, false, true, true, true,
+                     false, false, true, true, true,
+                     false, false, true, true, true;    // clang-format on
+  for(int row{0}; row < 8; row++) {
+    for(int col{0}; col < 5; col++) {
+      EXPECT_EQ(map.isValid(grid_map::Index(row, col)),
+                isValidExpected(row, col)) << "Value of map.isValid at [" << row
+                                           << ", " << col << "] is unexpected!";
     }
   }
 

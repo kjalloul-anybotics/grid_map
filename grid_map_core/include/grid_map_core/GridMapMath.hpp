@@ -214,7 +214,7 @@ bool getSubmapInformation(
  * @param bottomRightIndex the bottom right index in the map.
  * @return buffer size for the submap.
  */
-Size getSubmapSizeFromCornerIndeces(
+Size getSubmapSizeFromCornerIndices(
   const Index & topLeftIndex, const Index & bottomRightIndex,
   const Size & bufferSize, const Index & bufferStartIndex);
 

@@ -42,20 +42,6 @@ EllipseIterator::EllipseIterator(
   if (!isInside()) {++(*this);}
 }
 
-EllipseIterator & EllipseIterator::operator=(const EllipseIterator & other)
-{
-  center_ = other.center_;
-  semiAxisSquare_ = other.semiAxisSquare_;
-  transformMatrix_ = other.transformMatrix_;
-  internalIterator_ = other.internalIterator_;
-  mapLength_ = other.mapLength_;
-  mapPosition_ = other.mapPosition_;
-  resolution_ = other.resolution_;
-  bufferSize_ = other.bufferSize_;
-  bufferStartIndex_ = other.bufferStartIndex_;
-  return *this;
-}
-
 bool EllipseIterator::operator!=(const EllipseIterator & other) const
 {
   return internalIterator_ != other.internalIterator_;

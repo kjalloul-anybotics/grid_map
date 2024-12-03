@@ -25,8 +25,8 @@ AnalyticalFunctions createFlatWorld(grid_map::GridMap * map)
   AnalyticalFunctions func;
 
   func.f_ = [](double  /*x*/, double  /*y*/) {
-    return 0.0;
-  };
+      return 0.0;
+    };
 
   fillGridMap(map, func);
 
@@ -103,10 +103,10 @@ AnalyticalFunctions createTanhWorld(grid_map::GridMap * map)
 
   std::uniform_real_distribution<double> scaling(0.1, 2.0);
   const double s = scaling(rndGenerator);
-  func.f_ = [s](double x,double  /*y*/) {
-    const double expZ = std::exp(2 *s* x);
-    return (expZ - 1) / (expZ + 1);
-  };
+  func.f_ = [s](double x, double  /*y*/) {
+      const double expZ = std::exp(2 * s * x);
+      return (expZ - 1) / (expZ + 1);
+    };
 
   fillGridMap(map, func);
 
@@ -165,7 +165,7 @@ void fillGridMap(grid_map::GridMap * map, const AnalyticalFunctions & functions)
     const grid_map::Index index(*iterator);
     grid_map::Position pos;
     map->getPosition(index, pos);
-    data(index(0), index(1)) = static_cast<DataType>(functions.f_(pos.x(), pos.y()));
+    data(index(0), index(1)) = static_cast<grid_map::DataType>(functions.f_(pos.x(), pos.y()));
   }
 }
 
